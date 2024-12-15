@@ -4,7 +4,7 @@ from random import randint
 
 from channels.generic.websocket import AsyncWebsocketConsumer
 
-from digits_app.utils import generate_json_digits
+from digits_app.utils import generate_json_digit
 
 
 class WSConsumer(AsyncWebsocketConsumer):
@@ -12,6 +12,5 @@ class WSConsumer(AsyncWebsocketConsumer):
         await super().connect()
 
         while True:
-            random_number = randint(1, 1000)
-            await self.send(json.dumps({'message': random_number}))
+            await self.send(generate_json_digit())
             await sleep(1)
