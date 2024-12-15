@@ -91,6 +91,17 @@ DATABASES = {
     }
 }
 
+CHANNEL_LAYER = {
+    'default': {
+        'BACKEND': 'channels redis.core.RedisChannelsLayer',
+        'CONFIG': {
+            'hosts': [
+                {"127.0.0.1", 6379}
+            ]
+        },
+    }
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -127,7 +138,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
