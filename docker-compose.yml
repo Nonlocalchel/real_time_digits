@@ -4,8 +4,7 @@ services:
     build:
       context: .
     volumes:
-      - ./real_time_digits:/home/task_app/backend
-#      - static:/home/task_app/static
+      - ./real_time_digits:/home/task_app/real_time_digits
     ports:
       - 8000:8000
     command: python manage.py runserver 0.0.0.0:8000
@@ -15,11 +14,3 @@ services:
   real_time_digits_redis:
     image: redis:alpine
     container_name: real_time_digits_redis
-    command: >
-      sh -c '
-          mkdir -p /usr/local/etc/redis &&
-          echo "requirepass 'redis_super_pass'" >> /usr/local/etc/redis/redis.conf &&
-          echo "appendonly yes" >> /usr/local/etc/redis/redis.conf &&
-          echo "appendfsync everysec" >> /usr/local/etc/redis/redis.conf &&
-          redis-server /usr/local/etc/redis/redis.conf
-      '
