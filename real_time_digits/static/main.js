@@ -19,12 +19,11 @@ let myChart = new Chart(ctx, graphData)
 var socket = new WebSocket('ws://localhost:8000/ws/some-url')
 
 socket.onmessage = function(event){
-    var data = JSON.parse(event.data)
-    console.log(data)
+    var socketData = JSON.parse(event.data)
 
     let newGraphData = graphData.data.datasets[0].data
     newGraphData.shift()
-    newGraphData.push(data.message)
+    newGraphData.push(socketData.number)
 
     graphData.data.datasets[0].data = newGraphData
     myChart.update()
